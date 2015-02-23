@@ -1,0 +1,43 @@
+name ghost
+
+#install nodejs and nginx
+package nodejs nginx
+
+
+# NPM SHOULD BE INSTALLED BY USING JUMPSTART COMMAND
+
+# Clone npm into /app/code/npm.
+gd --branch=v2.6.1 https://github.com/npm/npm.git /app/code/npm
+
+# Symlink so npm can be used from the shell.
+run ln -s /app/code/npm/bin/npm-cli.js /app/code/bin/npm
+
+# install ghost, use local zip
+run wget https://ghost.org/zip/ghost-0.5.8.zip
+run unzip -d /app/code/src ghost-0.5.8.zip
+
+
+# setup js-init
+gd https://github.com/jumpstarter-io/js-init.git /app/code/js-init
+run ln -s /app/code/js-init/init.js /app/code/init
+
+# setup daemons
+install daemons.json /app/code/daemons.json
+
+
+# use modified package.json with jumpstarterapi in it
+install package.json /app/code/src/package.json
+
+# install all production dependencies
+run cd /app/code/src && npm install --production
+
+# use our config.js
+install config.js /app/code/src/config.js
+
+# install the pre exec script that will be run on nodejs init
+install ghost_init.sh /app/code/ghost_init.sh
+run chmod +x /app/code/ghost_init.sh
+
+# use own nginx conf with proxy pass rather than fastcgi
+install nginx.conf /app/code/nginx/nginx.conf
+

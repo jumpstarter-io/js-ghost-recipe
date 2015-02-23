@@ -1,0 +1,14 @@
+{
+    "nginx": {
+        "pre_exec_list": [
+            ["/app/code/nginx/pre-exec"]
+        ],
+        "exec": ["/app/code/nginx/nginx", "-c", "/app/code/nginx/nginx.conf"]
+    },
+    "node": {
+        "pre_exec_list": [
+            ["/app/code/ghost_init.sh"]
+        ],
+        "exec": ["/bin/bash", "-c", "NODE_ENV=production nodejs /app/code/src/index.js"]
+    }
+}
