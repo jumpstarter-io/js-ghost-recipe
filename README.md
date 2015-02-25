@@ -7,7 +7,7 @@ To speed up starting of ghost instances, issue the following commands after succ
 /app/code/init
 ```
 
-wait for ghost to populate all database tables and give the message that the blog is available at http://_subdomain_.jump.st and do `ctrl+c` to stop the init script.
+wait for ghost to populate all database tables and give the message that the blog is available at https://_subdomain_.jump.st and do `ctrl+c` to stop the init script.
 
 ```bash
 mkdir /app/code/js-init-state
