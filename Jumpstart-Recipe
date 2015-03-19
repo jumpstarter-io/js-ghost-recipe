@@ -29,7 +29,7 @@ install daemons.json /app/code/daemons.json
 install package.json /app/code/src/package.json
 
 # install all production dependencies
-run cd /app/code/src && npm install --production
+run bash -c "cd /app/code/src && npm install --production"
 
 # use our config.js
 install config.js /app/code/src/config.js
